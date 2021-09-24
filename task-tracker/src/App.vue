@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <Header title="Task Tracker" />
-    <Button text="Add Task" color="olive" />
+    <AddTasks @add-task="addTask" />
     <Tasks
       :tasks="tasks"
       @delete-task="deleteTask"
@@ -12,15 +12,15 @@
 
 <script>
 import Header from "./components/Header.vue";
-import Button from "./components/Button.vue";
 import Tasks from "./components/Tasks.vue";
+import AddTasks from "./components/AddTasks.vue";
 
 export default {
   name: "App",
   components: {
     Header,
-    Button,
     Tasks,
+    AddTasks,
   },
   data() {
     return {
@@ -28,6 +28,9 @@ export default {
     };
   },
   methods: {
+    addTask(task) {
+      this.tasks = [...this.tasks, task];
+    },
     deleteTask(id) {
       if (confirm("You sure?")) {
         this.tasks = this.tasks.filter((task) => task.id !== id);
@@ -39,6 +42,7 @@ export default {
       );
     },
   },
+
   created() {
     this.tasks = [
       { id: 1, text: "Doctors Appointment", day: "3.3.33", reminder: true },
