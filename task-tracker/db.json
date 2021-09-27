@@ -17,6 +17,12 @@
       "text": "Food shopping",
       "day": "March 7th at 2:00pm",
       "reminder": false
+    },
+    {
+      "id": 204,
+      "text": "Denstis appontment",
+      "day": "3.3.21 3pm",
+      "reminder": true
     }
   ]
 }
