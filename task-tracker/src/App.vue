@@ -51,14 +51,20 @@ export default {
     toggleAddTask() {
       this.showAddTask = !this.showAddTask;
     },
+    async fetchTasks() {
+      const res = await fetch("api/tasks");
+      const data = await res.json();
+      return data;
+    },
+    async fetchTask(id) {
+      const res = await fetch(`api/tasks/${id}`);
+      const data = await res.json();
+      return data;
+    },
   },
 
-  created() {
-    this.tasks = [
-      { id: 1, text: "Doctors Appointment", day: "3.3.33", reminder: true },
-      { id: 2, text: "Meeting with Mimi", day: "5.9.33", reminder: false },
-      { id: 3, text: "Meeting with Papa", day: "8.9.33", reminder: true },
-    ];
+  async created() {
+    this.tasks = await this.fetchTasks(); // this will get a promise so it have to be async
   },
 };
 </script>
